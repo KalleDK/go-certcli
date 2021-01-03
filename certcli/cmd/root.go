@@ -6,7 +6,6 @@ import (
 
 	"github.com/spf13/cobra"
 
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
@@ -38,36 +37,15 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.certcli.yaml)")
-
-	rootCmd.PersistentFlags().StringP("dir", "d", "data", "Dir for certs")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", CONFIG_FILE, "config file")
+	rootCmd.PersistentFlags().StringP("dir", "d", DATA_DIR, "Dir for certs")
 	viper.BindPFlag("dir", rootCmd.PersistentFlags().Lookup("dir"))
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
-	} else {
-		// Find home directory.
-		home, err := homedir.Dir()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		// Search config in home directory with name ".certcli" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigName(".certcli")
-	}
-
-	viper.SetEnvPrefix("certapi")
+	viper.SetConfigFile(cfgFile)
+	viper.SetEnvPrefix("certcli")
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
