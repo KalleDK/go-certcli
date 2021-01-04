@@ -23,7 +23,7 @@ jobs:
       env:
         REPODEST: ${{ github.workspace }}/packages
         SRCDEST: ${{ github.workspace }}/cache/distfiles
-      uses: .github/actions/alpine
+      uses: ./.github/actions/alpine
     - name: Build
       id: build
       env:
