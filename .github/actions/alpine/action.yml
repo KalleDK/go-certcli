@@ -6,7 +6,6 @@ inputs:
   abuild_key:
     description: 'RSA Key to sign the package'
     required: true
-    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
