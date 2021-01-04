@@ -14,7 +14,7 @@ jobs:
       with:
         abuild_key: ${{ secrets.ABUILD_KEY }}
         abuild_key_pub: ${{ secrets.ABUILD_KEY_PUB }}
-        abuild_key_name: ${{ secrets.ABUILD_KEY_NAME }}
+        abuild_key_name: alpine@k-moeller.dk
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
