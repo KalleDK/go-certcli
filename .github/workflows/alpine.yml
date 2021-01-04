@@ -1,0 +1,16 @@
+on: push
+
+name: Make apk
+
+jobs:
+  create_release:
+    name: Create Relase
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+    - name: Build
+      id: build
+      uses: docker://andyshinn/alpine-abuild:latest
+      with:
+        args: sh -c "cd alpine && abuild checksum && abuild -r"
