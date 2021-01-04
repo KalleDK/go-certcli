@@ -16,4 +16,4 @@ ls -la /etc/apk/keys/
 #su runner -c 'abuild -r'
 abuild -F checksum
 abuild -F -r
-find $REPODEST -name "*.apk" | head -1 | xargs apk verify
+find $REPODEST -name "*.apk" | xargs apk verify
