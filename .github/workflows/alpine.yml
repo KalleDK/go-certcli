@@ -19,6 +19,11 @@ jobs:
         env
         ls -la
         id
+    - name: Act
+      env:
+        REPODEST: ${{ github.workspace }}/packages
+        SRCDEST: ${{ github.workspace }}/cache/distfiles
+      uses: .github/actions/alpine
     - name: Build
       id: build
       env:
