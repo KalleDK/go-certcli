@@ -15,4 +15,4 @@ cp "${PACKAGER_PUBKEY}" /etc/apk/keys/
 #su runner -c 'abuild -r'
 abuild -F checksum
 abuild -F -r
-apk verify $REPODEST/x86_64/certcli-*
+find $REPODEST -name "*.apk" | head -1 | xargs apk verify
