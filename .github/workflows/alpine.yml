@@ -26,7 +26,7 @@ jobs:
         SRCDEST: ${{ github.workspace }}/cache/distfiles
       uses: docker://kadock/apk-build-action:latest
       with:
-        args: sh -c "env && ls -la && chmod go+w . && chmod go+w APKBUILD && su abuild -c 'abuild-keygen -n -a' && su abuild -c 'abuild checksum' && su abuild -c 'abuild -r'"
+        args: sh -c "addgroup -g 116 docker && adduser -D -G docker -g 'Alpine Package Builder' -u 1001 -s /bin/ash runner && adduser runner abuild && env && ls -la && su runner -c 'abuild-keygen -n -a' && su runner -c 'abuild checksum' && su runner -c 'abuild -r'"
     - name: Dump 3
       run: |
         env
