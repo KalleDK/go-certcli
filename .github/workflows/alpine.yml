@@ -2,12 +2,7 @@ on: push
 
 name: Make apk
 
-jobs:
-  dump_env:
-    name: Dump env
-    runs-on: ubuntu-latest
-    steps:
-    
+jobs:   
   create_release:
     name: Create Relase
     runs-on: ubuntu-latest
