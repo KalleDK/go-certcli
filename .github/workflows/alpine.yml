@@ -7,36 +7,10 @@ jobs:
     name: Create Relase
     runs-on: ubuntu-latest
     steps:
-    - name: Dump 1
-      run: |
-        env
-        ls -la
-        id
     - name: Checkout source code
       uses: actions/checkout@v2
-    - name: Dump 2
-      run: |
-        env
-        ls -la
-        id
-    - name: Act
-      env:
-        REPODEST: ${{ github.workspace }}/packages
-        SRCDEST: ${{ github.workspace }}/cache/distfiles
-      uses: ./.github/actions/alpine
     - name: Build
-      id: build
-      env:
-        REPODEST: ${{ github.workspace }}/packages
-        SRCDEST: ${{ github.workspace }}/cache/distfiles
-      uses: docker://kadock/apk-build-action:latest
-      with:
-        args: sh -c "addgroup -g 116 docker && adduser -D -G docker -g 'Alpine Package Builder' -u 1001 -s /bin/ash runner && adduser runner abuild && env && ls -la && su runner -c 'abuild-keygen -n -a' && su runner -c 'abuild checksum' && su runner -c 'abuild -r'"
-    - name: Dump 3
-      run: |
-        env
-        ls -la
-        id
+      uses: ./.github/actions/alpine
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
