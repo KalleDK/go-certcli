@@ -10,6 +10,7 @@ export PACKAGER_PUBKEY="/root/${INPUT_ABUILD_KEY_NAME}.rsa.pub"
 printf "${INPUT_ABUILD_KEY}" > "${PACKAGER_PRIVKEY}"
 printf "${INPUT_ABUILD_KEY_PUB}" > "${PACKAGER_PUBKEY}"
 cp "${PACKAGER_PUBKEY}" /etc/apk/keys/
+ls -la /etc/apk/keys/
 #su runner -c 'abuild-keygen -n -a'
 #su runner -c 'abuild checksum'
 #su runner -c 'abuild -r'
