@@ -11,6 +11,6 @@ jobs:
       uses: actions/checkout@v2
     - name: Build
       id: build
-      uses: docker://alpine:latest
+      uses: docker://kadock/apk-build-action:latest
       with:
-        args: ls -la
+        args: sh -c "chmod go+w . && chmod go+w APKBUILD && su abuild -c 'abuild-keygen -n -a' && su abuild -c 'abuild checksum'"
