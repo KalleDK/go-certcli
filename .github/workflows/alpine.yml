@@ -13,4 +13,5 @@ jobs:
       id: build
       uses: docker://andyshinn/alpine-abuild:latest
       with:
-        args: sh -c "cd alpine && ls && abuild checksum && abuild -r"
+        entrypoint: /bin/sh
+        args: -c "cd alpine && ls && abuild checksum && abuild -r"
