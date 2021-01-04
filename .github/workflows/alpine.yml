@@ -16,7 +16,7 @@ jobs:
         SRCDEST: ${{ github.workspace }}/cache/distfiles
       uses: docker://kadock/apk-build-action:latest
       with:
-        args: sh -c "chmod go+w . && chmod go+w APKBUILD && su abuild -c 'abuild-keygen -n -a' && su abuild -c 'abuild checksum' && su abuild -c 'abuild -r'"
+        args: sh -c "env && ls -la && chmod go+w . && chmod go+w APKBUILD && su abuild -c 'abuild-keygen -n -a' && su abuild -c 'abuild checksum' && su abuild -c 'abuild -r'"
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
